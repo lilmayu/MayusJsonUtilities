@@ -31,16 +31,16 @@ dependencies {
 ## Maven
 ```
 <repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		<url>https://jitpack.io</url>
-	</repository>
+        <repository>
+            <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
 </repositories>
 
 <dependency>
-	<groupId>com.github.lilmayu</groupId>
-	    <artifactId>Mayu-s-Json-Utilities</artifactId>
-	<version>main-SNAPSHOT</version>
+    <groupId>com.github.lilmayu</groupId>
+        <artifactId>Mayu-s-Json-Utilities</artifactId>
+    <version>main-SNAPSHOT</version>
 </dependency>
 ```
 For more info see [JitPack](https://jitpack.io/#lilmayu/Mayu-s-Json-Utilities/main-SNAPSHOT)
