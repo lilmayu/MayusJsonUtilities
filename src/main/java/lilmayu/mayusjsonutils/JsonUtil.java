@@ -2,7 +2,6 @@ package lilmayu.mayusjsonutils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.sun.istack.internal.Nullable;
 import lilmayu.mayusjsonutils.objects.MayuJson;
 import lombok.NonNull;
 import org.apache.commons.io.FilenameUtils;
@@ -74,7 +73,7 @@ public class JsonUtil {
      * @return Returns null, when specified json file does not exist, otherwise returns {@link MayuJson}
      * @throws IOException Throws {@link IOException} when it failed to read from file
      */
-    public static @Nullable MayuJson loadJson(@NonNull String path) throws IOException {
+    public static MayuJson loadJson(@NonNull String path) throws IOException {
         Path pathObject = Paths.get(path);
 
         if (!Files.exists(pathObject)) {
