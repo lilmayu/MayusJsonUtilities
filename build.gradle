@@ -10,5 +10,18 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    // GSon
+    compile 'com.google.code.gson:gson:2.8.6'
+
+    // Commons-io
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+}
+
+task compile(type: Jar) {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }

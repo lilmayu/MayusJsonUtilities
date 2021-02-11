@@ -1,1 +1,6 @@
-Mayu's Json Utilities
+This uses:
+ Gson
+ Lombok
+ Commons-io
+
+TODO: Readme
