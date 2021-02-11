@@ -29,7 +29,7 @@ public class JsonUtil {
      * @throws IOException Throws {@link IOException} when it failed to create required directories / failed to read/write from/to file.
      */
     public static MayuJson createOrLoadJsonFromFile(@NonNull String path) throws IOException {
-        return createOrLoadJsonFromFile(new File(FilenameUtils.getPath(path)));
+        return createOrLoadJsonFromFile(new File(path));
     }
 
     /**
@@ -51,13 +51,15 @@ public class JsonUtil {
      * @throws IOException Throws {@link IOException} when it failed to create required directories / failed to read/write from/to file.
      */
     public static MayuJson createOrLoadJsonFromFile(@NonNull File file) throws IOException {
-        file.mkdirs();
+        System.out.println("Path: '" + file.toString() + "'A");
         if (!Files.exists(file.toPath())) {
-            throw new IOException("Failed to create directories for specified path! Path: " + file.toPath().toAbsolutePath());
+            if (file.getParentFile() != null) {
+                file.getParentFile().mkdirs();
+            }
         }
 
         if (!file.exists()) {
-            FileWriter fileWriter = new FileWriter(file.getPath());
+            FileWriter fileWriter = new FileWriter(file.getAbsolutePath());
             fileWriter.write("{}");
             fileWriter.close();
         }
@@ -66,15 +68,15 @@ public class JsonUtil {
     }
 
     /**
-     * Loads json file in location of specified path. Does not create new file if file does not exist.
+     * Loads json file in location of specified file. Does not create new file if file does not exist.
      * If you wanted to create/load file, see {@link #createOrLoadJsonFromFile(String)}
      *
-     * @param path Path where should be json file
+     * @param file Path where should be json file
      * @return Returns null, when specified json file does not exist, otherwise returns {@link MayuJson}
      * @throws IOException Throws {@link IOException} when it failed to read from file
      */
-    public static MayuJson loadJson(@NonNull String path) throws IOException {
-        Path pathObject = Paths.get(path);
+    public static MayuJson loadJson(@NonNull String file) throws IOException {
+        Path pathObject = Paths.get(file);
 
         if (!Files.exists(pathObject)) {
             return null;

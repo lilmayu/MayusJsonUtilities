@@ -50,4 +50,8 @@ public class MayuJson {
         fileWriter.write(jsonString);
         fileWriter.close();
     }
+
+    public void setJsonObject(String json) {
+        this.jsonObject = JsonParser.parseString(jsonObject.toString()).getAsJsonObject();
+    }
 }
