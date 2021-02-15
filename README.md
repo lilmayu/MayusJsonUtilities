@@ -24,6 +24,7 @@ mayuJson.getFile(); // Simply gets File
 repositories {
     maven { url 'https://jitpack.io' }
 }
+
 dependencies {
     compile 'com.github.lilmayu:Mayu-s-Json-Utilities:main-SNAPSHOT' // Always newest build
 }
