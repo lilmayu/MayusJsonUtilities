@@ -4,7 +4,6 @@ import com.google.gson.*;
 import lilmayu.mayusjsonutils.JsonUtil;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.SneakyThrows;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,7 +12,7 @@ import java.io.IOException;
 public class MayuJson {
 
     private @Getter @Setter File file;
-    private @Getter @Setter JsonObject jsonObject;
+    private @Getter JsonObject jsonObject;
 
     public MayuJson(File file, JsonObject jsonObject) {
         this.file = file;
@@ -36,6 +35,7 @@ public class MayuJson {
 
     /**
      * Saves current JsonObject into current File.
+     *
      * @param pretty Determines if json from current JsonObject should be pretty-printed into current File.
      */
     public void saveJson(boolean pretty) throws IOException {
@@ -44,7 +44,7 @@ public class MayuJson {
             gson = new GsonBuilder().setPrettyPrinting().create();
         else
             gson = new GsonBuilder().create();
-        JsonElement jsonElement = JsonParser.parseString(jsonObject.toString());
+        JsonElement jsonElement = new JsonParser().parse(jsonObject.toString());
         String jsonString = gson.toJson(jsonElement);
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(jsonString);
@@ -52,6 +52,6 @@ public class MayuJson {
     }
 
     public void setJsonObject(String json) {
-        this.jsonObject = JsonParser.parseString(jsonObject.toString()).getAsJsonObject();
+        this.jsonObject = new JsonParser().parse(jsonObject.toString()).getAsJsonObject();
     }
 }

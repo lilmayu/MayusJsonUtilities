@@ -51,7 +51,6 @@ public class JsonUtil {
      * @throws IOException Throws {@link IOException} when it failed to create required directories / failed to read/write from/to file.
      */
     public static MayuJson createOrLoadJsonFromFile(@NonNull File file) throws IOException {
-        System.out.println("Path: '" + file.toString() + "'A");
         if (!Files.exists(file.toPath())) {
             if (file.getParentFile() != null) {
                 file.getParentFile().mkdirs();
@@ -86,7 +85,7 @@ public class JsonUtil {
         for (String line : Files.readAllLines(pathObject)) {
             stringBuilder.append(line);
         }
-        JsonObject jsonObject = JsonParser.parseString(stringBuilder.toString()).getAsJsonObject();
+        JsonObject jsonObject = new JsonParser().parse(stringBuilder.toString()).getAsJsonObject();
         return new MayuJson(pathObject.toFile(), jsonObject);
     }
 
@@ -99,7 +98,7 @@ public class JsonUtil {
      * @throws IOException Throws {@link IOException} when it failed to save specified json into specified file
      */
     public static MayuJson saveJson(@NonNull String json, @NonNull File file) throws IOException {
-        JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+        JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
         return saveJson(jsonObject, file, true);
     }
 
