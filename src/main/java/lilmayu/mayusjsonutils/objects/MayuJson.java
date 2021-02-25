@@ -5,9 +5,9 @@ import lilmayu.mayusjsonutils.JsonUtil;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class MayuJson {
 
@@ -46,9 +46,10 @@ public class MayuJson {
             gson = new GsonBuilder().create();
         JsonElement jsonElement = new JsonParser().parse(jsonObject.toString());
         String jsonString = gson.toJson(jsonElement);
-        FileWriter fileWriter = new FileWriter(file);
-        fileWriter.write(jsonString);
-        fileWriter.close();
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
+        outputStreamWriter.write(jsonString);
+        outputStreamWriter.close();
     }
 
     public void setJsonObject(String json) {
