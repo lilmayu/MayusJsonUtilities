@@ -23,10 +23,10 @@ public class JsonLoader {
 
     private static Object makeObjectFromJsonMaker(JsonObject jsonObject, Class<?> clazz) throws IllegalAccessException, InstantiationException, NoSuchFieldException, ClassNotFoundException {
         Object object = clazz.newInstance();
-        System.out.println("- First debug: " + object.getClass().getName());
+        //System.out.println("- First debug: " + object.getClass().getName());
 
         for (Field field : object.getClass().getDeclaredFields()) {
-            System.out.println(" ^- Field name: " + field.getName());
+            //System.out.println(" ^- Field name: " + field.getName());
         }
 
         for (String key : jsonObject.keySet()) {
@@ -39,7 +39,7 @@ public class JsonLoader {
                 field.set(object, getValue(getClassNameFromKey(key), jsonElement));
                 field.setAccessible(wasAccessible);
             } else if (jsonElement.isJsonObject()) {
-                System.out.println("Is jsonObject, name: " + getClassNameFromKey(key));
+                //System.out.println("Is jsonObject, name: " + getClassNameFromKey(key));
                 Object anotherObject = makeObjectFromJsonMaker(jsonElement.getAsJsonObject(), Class.forName(getClassNameFromKey(key)));
                 Field field = object.getClass().getDeclaredField(getFieldNameFromKey(key));
                 boolean wasAccessible = field.isAccessible();
@@ -70,7 +70,7 @@ public class JsonLoader {
     }
 
     private static Object getValue(String name, JsonElement jsonElement) {
-        System.out.println("Debug name: " + name);
+        //System.out.println("Debug name: " + name);
         JsonPrimitive jsonPrimitive = jsonElement.getAsJsonPrimitive();
         if (jsonPrimitive.isBoolean()) {
             return jsonPrimitive.getAsBoolean();
