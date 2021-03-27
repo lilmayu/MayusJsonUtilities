@@ -5,7 +5,10 @@ import com.google.gson.JsonParser;
 import lilmayu.mayusjsonutils.objects.MayuJson;
 import lombok.NonNull;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,7 +16,7 @@ import java.nio.file.Paths;
 
 /**
  * JsonUtil class - Main entry-point for Mayu's Json Utilities
- * <p>
+ * <br>
  * Made by: lilmayu
  * Date: 11.02.2021
  */
@@ -72,7 +75,7 @@ public class JsonUtil {
     }
 
     /**
-     * Loads json file in location of specified file. Does not create new file if file does not exist.
+     * Loads json file in location of specified file. Does not create new file if file does not exist.<br><br>
      * If you wanted to create/load file, see {@link #createOrLoadJsonFromFile(String)}
      *
      * @param file Path where should be json file

@@ -5,8 +5,10 @@ import lilmayu.mayusjsonutils.JsonUtil;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.*;
-import java.nio.charset.Charset;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 
 public class MayuJson {
@@ -52,7 +54,19 @@ public class MayuJson {
         outputStreamWriter.close();
     }
 
+    /**
+     * Sets current jsonObject to json in this supplied String
+     * @param json Json in string
+     */
     public void setJsonObject(String json) {
-        this.jsonObject = new JsonParser().parse(jsonObject.toString()).getAsJsonObject();
+        this.jsonObject = new JsonParser().parse(json).getAsJsonObject();
+    }
+
+    /**
+     * Sets current jsonObject
+     * @param jsonObject JsonObject
+     */
+    public void setJsonObject(JsonObject jsonObject) {
+        this.jsonObject = jsonObject;
     }
 }
