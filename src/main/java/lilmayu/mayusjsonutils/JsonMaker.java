@@ -15,6 +15,10 @@ public class JsonMaker {
     public static JsonObject makeJsonObject(Object object) throws IllegalAccessException {
         JsonObject jsonObject = new JsonObject();
 
+        if (object == null) {
+            return null;
+        }
+
         for (Field fieldInClassObject : object.getClass().getDeclaredFields()) {
             if (fieldInClassObject.isAnnotationPresent(SerializableJson.class)) {
                 fieldInClassObject.setAccessible(true);

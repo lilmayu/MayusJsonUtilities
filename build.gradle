@@ -15,10 +15,10 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
     // GSon
-    compile 'com.google.code.gson:gson:2.8.6'
+    compileOnly 'com.google.code.gson:gson:2.8.6'
 
     // Commons-io
-    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    compileOnly group: 'commons-io', name: 'commons-io', version: '2.6'
 }
 
 task compile(type: Jar) {

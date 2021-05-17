@@ -21,6 +21,10 @@ public class JsonLoader {
         return makeObjectFromJsonMaker(jsonObject, clazz);
     }
 
+    public static Object loadJsonObject(JsonObject jsonObject, Class<?> clazz) throws ClassNotFoundException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+        return makeObjectFromJsonMaker(jsonObject, clazz);
+    }
+
     private static Object makeObjectFromJsonMaker(JsonObject jsonObject, Class<?> clazz) throws IllegalAccessException, InstantiationException, NoSuchFieldException, ClassNotFoundException {
         Object object = clazz.newInstance();
         //System.out.println("- First debug: " + object.getClass().getName());
@@ -33,7 +37,12 @@ public class JsonLoader {
             JsonElement jsonElement = jsonObject.get(key);
 
             if (jsonElement.isJsonPrimitive()) {
-                Field field = object.getClass().getDeclaredField(getFieldNameFromKey(key));
+                Field field;
+                try {
+                    field = object.getClass().getDeclaredField(getFieldNameFromKey(key));
+                } catch (NoSuchFieldException ignored) {
+                    continue;
+                }
                 boolean wasAccessible = field.isAccessible();
                 field.setAccessible(true);
                 field.set(object, getValue(getClassNameFromKey(key), jsonElement));
