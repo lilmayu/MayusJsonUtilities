@@ -14,6 +14,9 @@ import java.util.List;
 
 public class JsonLoader {
 
+    /**
+     * This is experimental. You should not use it in production.
+     */
     public static Object loadJsonObject(File file, Class<?> clazz) throws IOException, ClassNotFoundException, NoSuchFieldException, InstantiationException, IllegalAccessException {
         MayuJson mayuJson = JsonUtil.createOrLoadJsonFromFile(file);
         JsonObject jsonObject = mayuJson.getJsonObject();
@@ -21,6 +24,9 @@ public class JsonLoader {
         return makeObjectFromJsonMaker(jsonObject, clazz);
     }
 
+    /**
+     * This is experimental. You should not use it in production.
+     */
     public static Object loadJsonObject(JsonObject jsonObject, Class<?> clazz) throws ClassNotFoundException, NoSuchFieldException, InstantiationException, IllegalAccessException {
         return makeObjectFromJsonMaker(jsonObject, clazz);
     }

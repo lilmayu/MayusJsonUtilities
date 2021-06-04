@@ -1,4 +1,4 @@
-# Mayu's Json Utilities
+# Mayu's Json Utilities - 1.0
 ## Usage
 ```java
 // Loads / creates file with json, returns MayuJson (see Wiki for further information)
@@ -19,33 +19,13 @@ mayuJson.reloadJson(); // Relods json from current file in this object; can be c
 mayuJson.getJsonObject(); // Simply gets JsonObject
 mayuJson.getFile(); // Simply gets File
 ```
-## Gradle
-```
-repositories {
-    maven { url 'https://jitpack.io' }
-}
+## Download
+- Since JitPack does not work anymore, please download this library in [Releases](https://github.com/lilmayu/MayusJsonUtilities/releases) section.
 
-dependencies {
-    compile 'com.github.lilmayu:Mayu-s-Json-Utilities:main-SNAPSHOT' // Always newest build
-}
-```
-## Maven
-```
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
+## Experimental features
+- JsonMaker and JsonLoader - You should not use it in production. Actually, Gson have same feature, which is safer.
 
-<dependency>
-    <groupId>com.github.lilmayu</groupId>
-        <artifactId>Mayu-s-Json-Utilities</artifactId>
-    <version>main-SNAPSHOT</version>
-</dependency>
-```
-For more info see [JitPack](https://jitpack.io/#lilmayu/Mayu-s-Json-Utilities/main-SNAPSHOT)
-
+## Libraries used
 This library uses:
  - Gson
  - Lombok

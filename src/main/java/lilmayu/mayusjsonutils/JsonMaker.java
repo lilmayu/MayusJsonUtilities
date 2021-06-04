@@ -12,6 +12,9 @@ import java.util.List;
 
 public class JsonMaker {
 
+    /**
+     * This is experimental. You should not use it in production.
+     */
     public static JsonObject makeJsonObject(Object object) throws IllegalAccessException {
         JsonObject jsonObject = new JsonObject();
 
