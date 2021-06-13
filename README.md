@@ -4,7 +4,7 @@
  - Licence: `LGPL 3.0`
  - Author: `lilmayu`
 ## Usage
- - Fore more information, please, see [Wiki](https://github.com/lilmayu/MayusJsonUtilities/wiki)
+ - For more information, please, see [Wiki](https://github.com/lilmayu/MayusJsonUtilities/wiki)
 ```java
 // Loads / creates file with json, returns MayuJson (see Wiki for further information)
 JsonUtil.createOrLoadJsonFromFile("foo.json"); // With string
