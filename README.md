@@ -1,5 +1,6 @@
 # Mayu's Json Utilities - 1.0
 ## Usage
+ - Fore more information, please, see [Wiki](https://github.com/lilmayu/MayusJsonUtilities/wiki)
 ```java
 // Loads / creates file with json, returns MayuJson (see Wiki for further information)
 JsonUtil.createOrLoadJsonFromFile("foo.json"); // With string
