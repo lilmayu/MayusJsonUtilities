@@ -1,5 +1,10 @@
-# Mayu's Json Utilities - 1.0
+# Mayu's Json Utilities
+## Information
+ - Current version: `1.1`
+ - Licence: `LGPL 3.0`
+ - Author: `lilmayu`
 ## Usage
+ - For more information, please, see [Wiki](https://github.com/lilmayu/MayusJsonUtilities/wiki)
 ```java
 // Loads / creates file with json, returns MayuJson (see Wiki for further information)
 JsonUtil.createOrLoadJsonFromFile("foo.json"); // With string
@@ -30,5 +35,3 @@ This library uses:
  - Gson
  - Lombok
  - Commons-io
-
-TODO: Wiki
