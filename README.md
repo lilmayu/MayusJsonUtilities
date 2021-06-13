@@ -35,5 +35,3 @@ This library uses:
  - Gson
  - Lombok
  - Commons-io
-
-TODO: Wiki
