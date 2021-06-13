@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 public class DataFile {
 
@@ -16,6 +18,14 @@ public class DataFile {
 
     public DataFile(@NonNull String fileName) {
         this.fileName = fileName;
+    }
+
+    public DataFile(@NonNull File file) {
+        this.fileName = file.getPath();
+    }
+
+    public DataFile(@NonNull Path path) {
+        this.fileName = path.toFile().getPath();
     }
 
     /**
@@ -67,6 +77,7 @@ public class DataFile {
         JsonObject jsonObject = mayuJson.getJsonObject();
         if (!jsonObject.has(memberName)) {
             jsonObject.add(memberName, defaultValue);
+            defaultValue.getAsInt();
             return defaultValue;
         } else {
             return jsonObject.get(memberName);
