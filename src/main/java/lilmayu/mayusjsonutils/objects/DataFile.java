@@ -77,7 +77,6 @@ public class DataFile {
         JsonObject jsonObject = mayuJson.getJsonObject();
         if (!jsonObject.has(memberName)) {
             jsonObject.add(memberName, defaultValue);
-            defaultValue.getAsInt();
             return defaultValue;
         } else {
             return jsonObject.get(memberName);
