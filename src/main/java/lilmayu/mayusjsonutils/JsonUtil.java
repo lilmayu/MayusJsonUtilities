@@ -106,7 +106,7 @@ public class JsonUtil {
 
     /**
      * Saves specified json to specified file
-     *}
+     *
      * @param json Valid json string
      * @param file File to save json to
      *
