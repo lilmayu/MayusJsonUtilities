@@ -95,13 +95,18 @@ public class JsonUtil {
         for (String line : Files.readAllLines(pathObject, StandardCharsets.UTF_8)) {
             stringBuilder.append(line);
         }
+
+        if (stringBuilder.toString().equalsIgnoreCase("")) {
+            stringBuilder.append("{}");
+        }
+
         JsonObject jsonObject = new JsonParser().parse(stringBuilder.toString()).getAsJsonObject();
         return new MayuJson(pathObject.toFile(), jsonObject);
     }
 
     /**
      * Saves specified json to specified file
-     *
+     *}
      * @param json Valid json string
      * @param file File to save json to
      *

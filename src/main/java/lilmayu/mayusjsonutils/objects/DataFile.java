@@ -11,6 +11,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
+/**
+ * @deprecated Deprecated, please use {@link MayuJson}. Will be removed in future versions.
+ */
+@Deprecated
 public class DataFile {
 
     private @Getter @Setter @NonNull String fileName;
@@ -30,6 +34,7 @@ public class DataFile {
 
     /**
      * Creates/loads specified file as JSON
+     *
      * @throws IOException Throws IOException when it failed to create required directories / failed to read/write from/to file.
      */
     public void reloadDataFile() throws IOException {
@@ -38,6 +43,7 @@ public class DataFile {
 
     /**
      * Saves currently JSON, if it is loaded
+     *
      * @throws IOException Throws IOException when it failed to save loaded JSON to file
      */
     public void saveDataFile() throws IOException {
@@ -47,6 +53,7 @@ public class DataFile {
 
     /**
      * Simply gets loaded json
+     *
      * @return Nullable {@link MayuJson}
      */
     public JsonObject getJsonObject() {
@@ -55,7 +62,9 @@ public class DataFile {
 
     /**
      * Gets Member by passed parameter
+     *
      * @param memberName Member name in JSON file
+     *
      * @return If member exists, it returns it's {@link JsonElement}, otherwise returns null
      */
     public JsonElement getOrNull(String memberName) {
@@ -69,8 +78,10 @@ public class DataFile {
 
     /**
      * Gets Member by passed parameter, if it does not exists, it adds default value to loaded JSON
-     * @param memberName Member name in JSON file
+     *
+     * @param memberName   Member name in JSON file
      * @param defaultValue Default value to set it, if member does not exists
+     *
      * @return If member exists, it returns it's {@link JsonElement}, otherwise it adds to loaded JSON default value and returns it
      */
     public JsonElement getOrCreate(String memberName, JsonElement defaultValue) {
