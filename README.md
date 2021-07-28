@@ -25,7 +25,24 @@ mayuJson.getJsonObject(); // Simply gets JsonObject
 mayuJson.getFile(); // Simply gets File
 ```
 ## Download
-- Since JitPack does not work anymore, please download this library in [Releases](https://github.com/lilmayu/MayusJsonUtilities/releases) section.
+- ### Gradle
+  ```
+  repositories {
+      maven { url 'https://jitpack.io' }
+  }
+  
+  dependencies {
+      compile 'com.github.lilmayu:Mayu-s-Json-Utilities:v1.2'
+      
+      // Needed libraries
+      // GSon
+      compile group: 'com.google.code.gson', name: 'gson', version: '2.8.7'
+
+      // Commons-io
+      compile group: 'commons-io', name: 'commons-io', version: '2.11.0'
+  }
+  ```
+- Alternatively, you can download via [Releases](https://github.com/lilmayu/MayusJsonUtilities/releases) section.
 
 ## Experimental features
 - JsonMaker and JsonLoader - You should not use it in production. Actually, Gson have same feature, which is safer.
