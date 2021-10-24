@@ -1,8 +1,21 @@
-# Mayu's Json Utilities
+<p align="center">
+  <h1 align="center">Mayu's JSON Utilities</h1>
+</p>
+<p align="center">
+  <img src="http://ForTheBadge.com/images/badges/made-with-java.svg" alt="Made with Java">
+  <br>
+  <img src="https://www.code-inspector.com/project/29507/status/svg" alt="Code Grade">
+  <img src="https://img.shields.io/github/license/lilmayu/MayusJsonUtilities.svg" alt="License">
+  <img src="https://img.shields.io/github/v/release/lilmayu/MayusJsonUtilities.svg" alt="Version">
+</p>
+<p align="center">
+    Simple JSON Utilities which I use in my projects
+</p>
+
 ## Information
- - Current version: `1.1`
- - Licence: `LGPL 3.0`
- - Author: `lilmayu`
+- Author: [Mayuna](https://mayuna.dev)
+- Download: [GitHub Releases](https://github.com/lilmayu/MayusJsonUtilities/releases)
+
 ## Usage
  - For more information, please, see [Wiki](https://github.com/lilmayu/MayusJsonUtilities/wiki)
 ```java
