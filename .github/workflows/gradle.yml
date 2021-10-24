@@ -13,6 +13,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      GPR_USER_PERSONAL: ${{ secrets.GPR_USER_PERSONAL }}
+      GPR_TOKEN_PERSONAL: ${{ secrets.GPR_TOKEN_PERSONAL }}
 
     steps:
     - uses: actions/checkout@v2
