@@ -1,8 +1,8 @@
-package lilmayu.mayusjsonutils.data;
+package dev.mayuna.mayusjsonutils.data;
 
 import com.google.gson.JsonObject;
 
-public interface ISavable {
+public interface Savable {
 
     JsonObject toJsonObject();
 

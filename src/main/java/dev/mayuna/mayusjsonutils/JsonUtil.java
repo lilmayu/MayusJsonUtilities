@@ -1,8 +1,8 @@
-package lilmayu.mayusjsonutils;
+package dev.mayuna.mayusjsonutils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import lilmayu.mayusjsonutils.objects.MayuJson;
+import dev.mayuna.mayusjsonutils.objects.MayuJson;
 import lombok.NonNull;
 
 import java.io.File;
