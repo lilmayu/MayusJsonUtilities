@@ -27,4 +27,4 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew compile -PGPR_USER_PERSONAL=$GPR_USER_PERSONAL -PGPR_TOKEN_PERSONAL=$GPR_TOKEN_PERSONAL
