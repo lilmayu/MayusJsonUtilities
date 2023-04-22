@@ -80,6 +80,69 @@ public class MayuJson {
     }
 
     /**
+     * Gets Member by passed parameter and type parameter
+     *
+     * @param memberName Member name in JSON file
+     * @param clazz Class from Type parameter
+     * @param <T> Type parameter decides what object will be returned
+     * @return T object, if specified clazz argument has class, which is not supported by GSON, returns null
+     */
+    public <T> T getOrNull(String memberName, Class<T> clazz) {
+        if (jsonObject.has(memberName)) {
+            JsonElement jsonElement = jsonObject.get(memberName);
+
+            if (!jsonElement.isJsonNull()) {
+                switch (clazz.getSimpleName()) {
+                    case "JsonArray": {
+                        return (T) jsonElement.getAsJsonArray();
+                    }
+                    case "Number": {
+                        return (T) jsonElement.getAsNumber();
+                    }
+                    case "JsonPrimitive": {
+                        return (T) jsonElement.getAsJsonPrimitive();
+                    }
+                    case "int": case "Integer": {
+                        return (T) ((Integer) jsonElement.getAsInt());
+                    }
+                    case "JsonObject": {
+                        return (T) jsonElement.getAsJsonObject();
+                    }
+                    case "bool": case "Boolean": {
+                        return (T) ((Boolean) jsonElement.getAsBoolean());
+                    }
+                    case "BigDecimal": {
+                        return (T) jsonElement.getAsBigDecimal();
+                    }
+                    case "BigInteger": {
+                        return (T) jsonElement.getAsBigInteger();
+                    }
+                    case "byte": case "Byte": {
+                        return (T) ((Byte) jsonElement.getAsByte());
+                    }
+                    case "double": case "Double": {
+                        return (T) ((Double) jsonElement.getAsDouble());
+                    }
+                    case "float": case "Float": {
+                        return (T) ((Float) jsonElement.getAsFloat());
+                    }
+                    case "long": case "Long": {
+                        return (T) ((Long) jsonElement.getAsLong());
+                    }
+                    case "short": case "Short": {
+                        return (T) ((Short) jsonElement.getAsShort());
+                    }
+                    case "String": {
+                        return (T) jsonElement.getAsString();
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Gets Member by passed parameter, if it does not exists, it adds default value to loaded JSON
      *
      * @param memberName   Member name in JSON file
@@ -186,6 +249,15 @@ public class MayuJson {
      */
     public boolean has(String memberName) {
         return jsonObject.has(memberName);
+    }
+
+    /**
+     * Tells if sepcified member is {@link JsonNull}
+     * @param memberName Member name
+     * @return true if it is JsonNull, false otherwise
+     */
+    public boolean isNull(String memberName) {
+        return jsonObject.get(memberName).isJsonNull();
     }
 
     /**

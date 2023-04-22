@@ -49,10 +49,7 @@ mayuJson.getFile(); // Simply gets File
       
       // Needed libraries
       // GSon
-      compile group: 'com.google.code.gson', name: 'gson', version: '2.8.7'
-
-      // Commons-io
-      compile group: 'commons-io', name: 'commons-io', version: '2.11.0'
+      compile group: 'com.google.code.gson', name: 'gson', version: '2.8.8' // Or newer version. Tested with 2.8.8
   }
   ```
 - Alternatively, you can download via [Releases](https://github.com/lilmayu/MayusJsonUtilities/releases) section.

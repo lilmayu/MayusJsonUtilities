@@ -1,14 +1,21 @@
 plugins {
     id 'java'
+    id 'io.codearte.nexus-staging' version '0.11.0'
 }
 
+apply plugin: 'maven'
 apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 group 'dev.mayuna'
-version '1.3'
+version '1.3.2'
 
 repositories {
     mavenCentral()
+
+    maven {
+        url 'https://s01.oss.sonatype.org/content/repositories/releases'
+    }
 }
 
 dependencies {
@@ -17,10 +24,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
     // GSon
-    implementation 'com.google.code.gson:gson:2.8.8'
-
-    // Commons-io
-    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+    compileOnly 'com.google.code.gson:gson:2.8.8'
 }
 
 task compile(type: Jar) {
@@ -45,4 +49,73 @@ publishing {
             from(components.java)
         }
     }
+}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'mayus-json-utilities'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'Simple JSON Utilities which I use in my projects'
+                url 'https://mayuna.dev/'
+
+                scm {
+                    connection 'scm:https://github.com/lilmayu/MayusJsonUtilities'
+                    developerConnection 'scm:git:https://github.com/lilmayu/MayusJsonUtilities.git'
+                    url 'https://github.com/lilmayu/MayusJsonUtilities'
+                }
+
+                licenses {
+                    license {
+                        name 'GNU Lesser General Public License v3.0'
+                        url 'https://www.gnu.org/licenses/lgpl-3.0.en.html'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'mayuna'
+                        name 'Marek Lof'
+                        email 'uwulilmayu@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
+nexusStaging {
+    packageGroup = "dev.mayuna" //optional if packageGroup == project.getGroup()
+}
+
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
 }
