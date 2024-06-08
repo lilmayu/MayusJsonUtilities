@@ -3,7 +3,7 @@
 Simple JSON Utilities which I use in my projects
 
 > [!IMPORTANT]  
-> As of 3.0, the library is now under MIT license. All previous versions are under LGPL 3.0.
+> As of 2.0, the library is now under MIT license. All previous versions are under LGPL 3.0.
 
 ## Contents
 
