@@ -71,7 +71,7 @@ public final class MayuJson {
                 Files.createDirectories(path.getParent());
             }
 
-            Files.writeString(path, EMPTY_JSON_OBJECT);
+            Files.write(path, EMPTY_JSON_OBJECT.getBytes(charset));
         }
 
         return loadJsonObject(path, charset);
@@ -107,9 +107,9 @@ public final class MayuJson {
             return null;
         }
 
-        String json = Files.readString(path, charset);
+        String json = new String(Files.readAllBytes(path), charset);
 
-        if (json.isBlank()) {
+        if (json.isEmpty()) {
             json = EMPTY_JSON_OBJECT;
         }
 
@@ -148,7 +148,7 @@ public final class MayuJson {
      * @throws IOException When I/O exception occurs while saving file
      */
     public void save(Gson gson) throws IOException {
-        Files.writeString(path, gson.toJson(jsonObject), charset);
+        Files.write(path, gson.toJson(jsonObject).getBytes(charset));
     }
 
     /**
