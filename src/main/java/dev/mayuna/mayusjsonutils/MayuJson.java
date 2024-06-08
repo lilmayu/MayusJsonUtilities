@@ -17,7 +17,6 @@ import java.nio.file.Path;
  * To load JSON from filesystem, see {@link #createOrLoadJsonObject(Path, Charset)}
  */
 @SuppressWarnings("unused")
-@Getter
 public final class MayuJson {
 
     /**
@@ -26,8 +25,8 @@ public final class MayuJson {
     public static final Gson DEFAULT_GSON = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
     public static final String EMPTY_JSON_OBJECT = "{}";
 
-    private @Setter @NonNull Path path;
-    private @Setter @NonNull Charset charset;
+    private @Setter @Getter @NonNull Path path;
+    private @Setter @Getter @NonNull Charset charset;
     private JsonObject jsonObject;
 
     /**
@@ -135,6 +134,8 @@ public final class MayuJson {
      * Reloads current {@link MayuJson} from the filesystem<br>
      * Internally invokes {@link MayuJson#createOrLoadJsonObject(Path, Charset)} and sets the result of {@link #getJsonObject()} to the current
      * {@link JsonObject}
+     *
+     * @throws IOException When I/O exception occurs (unable to create directors or unable to read file)
      */
     public void reload() throws IOException {
         this.jsonObject = MayuJson.createOrLoadJsonObject(path, charset).getJsonObject();
@@ -162,24 +163,6 @@ public final class MayuJson {
     }
 
     /**
-     * Sets current {@link JsonObject} to JSON in this supplied String
-     *
-     * @param json Non-null JSON in string
-     */
-    public void setJsonObject(@NonNull String json) {
-        this.jsonObject = JsonParser.parseString(json).getAsJsonObject();
-    }
-
-    /**
-     * Sets current {@link JsonObject}
-     *
-     * @param jsonObject Non-null {@link JsonObject}
-     */
-    public void setJsonObject(@NonNull JsonObject jsonObject) {
-        this.jsonObject = jsonObject;
-    }
-
-    /**
      * Returns {@link JsonElement} with specified name
      *
      * @param memberName Non-null member name
@@ -200,7 +183,8 @@ public final class MayuJson {
     }
 
     /**
-     * Returns {@link JsonElement} with specified name if exists. Otherwise, adds the specified value to the current {@link JsonObject} and returns the
+     * Returns {@link JsonElement} with specified name if exists. Otherwise, adds the specified value to the current {@link JsonObject} and returns
+     * the
      * same specified value.
      *
      * @param memberName   Non-null member name
@@ -312,9 +296,37 @@ public final class MayuJson {
      *
      * @param memberName Non-null member name
      *
-     * @return <code>true</code> the specified member is {@link JsonNull} <code>false</code> otherwise (<strong><code>false</code> also when the specified member does not exist</strong>)
+     * @return <code>true</code> the specified member is {@link JsonNull} <code>false</code> otherwise (<strong><code>false</code> also when the
+     * specified member does not exist</strong>)
      */
     public boolean isJsonNull(@NonNull String memberName) {
         return jsonObject.get(memberName).isJsonNull();
+    }
+
+    /**
+     * Returns current {@link JsonObject}
+     *
+     * @return Non-null {@link JsonObject}
+     */
+    public JsonObject getJsonObject() {
+        return jsonObject;
+    }
+
+    /**
+     * Sets current {@link JsonObject} to JSON in this supplied String
+     *
+     * @param json Non-null JSON in string
+     */
+    public void setJsonObject(@NonNull String json) {
+        this.jsonObject = JsonParser.parseString(json).getAsJsonObject();
+    }
+
+    /**
+     * Sets current {@link JsonObject}
+     *
+     * @param jsonObject Non-null {@link JsonObject}
+     */
+    public void setJsonObject(@NonNull JsonObject jsonObject) {
+        this.jsonObject = jsonObject;
     }
 }
