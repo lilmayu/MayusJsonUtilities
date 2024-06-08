@@ -1,22 +1,57 @@
-<p align="center">
-  <h1 align="center">Mayu's JSON Utilities</h1>
-</p>
-<p align="center">
-  <img src="http://ForTheBadge.com/images/badges/made-with-java.svg" alt="Made with Java">
-  <br>
-  <img src="https://www.code-inspector.com/project/29507/status/svg" alt="Code Grade">
-  <img src="https://img.shields.io/github/license/lilmayu/MayusJsonUtilities.svg" alt="License">
-  <img src="https://img.shields.io/github/v/release/lilmayu/MayusJsonUtilities.svg" alt="Version">
-</p>
-<p align="center">
-    Simple JSON Utilities which I use in my projects
-</p>
+# Mayu's JSON Utilities
 
-## Information
-- Author: [Mayuna](https://mayuna.dev)
-- Download: [GitHub Releases](https://github.com/lilmayu/MayusJsonUtilities/releases)
+Simple JSON Utilities which I use in my projects
 
-## Usage
+> [!IMPORTANT]  
+> As of 3.0, the library is now under MIT license. All previous versions are under LGPL 3.0.
+
+## Contents
+
+- [Features](#features)
+- [Installation](#installation)
+  - [Gradle](#gradle)
+  - [Maven](#maven)
+- [Documentation](#documentation)
+
+## Features
+
+## Installation
+
+### Gradle
+
+```groovy
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'dev.mayuna:mayus-json-utilities:2.0'
+  
+    // Required
+    implementation 'com.google.code.gson:gson:2.11.0'
+}
+```
+
+### Maven
+
+```xml
+<dependency>
+    <groupId>dev.mayuna</groupId>
+    <artifactId>mayus-json-utilities</artifactId>
+    <version>2.0</version>
+</dependency>
+
+<!-- Required -->
+<dependency>
+  <groupId>com.google.code.gson</groupId>
+  <artifactId>gson</artifactId>
+  <version>2.11.0</version>
+</dependency>
+```
+
+**You can find the latest version [here](https://mvnrepository.com/artifact/dev.mayuna/mayus-library).**
+
+## Documentation
  - For more information, please, see [Wiki](https://github.com/lilmayu/MayusJsonUtilities/wiki)
 ```java
 // Loads / creates file with json, returns MayuJson (see Wiki for further information)
@@ -37,28 +72,3 @@ mayuJson.reloadJson(); // Relods json from current file in this object; can be c
 mayuJson.getJsonObject(); // Simply gets JsonObject
 mayuJson.getFile(); // Simply gets File
 ```
-## Download
-- ### Gradle
-  ```
-  repositories {
-      maven { url 'https://jitpack.io' }
-  }
-  
-  dependencies {
-      compile 'com.github.lilmayu:Mayu-s-Json-Utilities:v1.2'
-      
-      // Needed libraries
-      // GSon
-      compile group: 'com.google.code.gson', name: 'gson', version: '2.8.8' // Or newer version. Tested with 2.8.8
-  }
-  ```
-- Alternatively, you can download via [Releases](https://github.com/lilmayu/MayusJsonUtilities/releases) section.
-
-## Experimental features
-- JsonMaker and JsonLoader - You should not use it in production. Actually, Gson have same feature, which is safer.
-
-## Libraries used
-This library uses:
- - Gson
- - Lombok
- - Commons-io
