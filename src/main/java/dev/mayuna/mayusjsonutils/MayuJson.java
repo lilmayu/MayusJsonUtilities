@@ -131,6 +131,63 @@ public final class MayuJson {
     }
 
     /**
+     * Saves specified {@link JsonElement} into file specified by {@link Path} with the specified {@link Charset} serialized by the specified
+     * {@link Gson}
+     *
+     * @param jsonElement Non-null {@link JsonElement}
+     * @param path        Non-null {@link Path}
+     * @param gson        Non-null {@link Gson}
+     * @param charset     Non-null {@link Charset}
+     *
+     * @throws IOException When I/O exception occurs (unable to write file)
+     */
+    public static void saveJson(@NonNull JsonElement jsonElement, @NonNull Path path, @NonNull Charset charset, @NonNull Gson gson) throws IOException {
+        Files.write(path, gson.toJson(jsonElement).getBytes(charset));
+    }
+
+    /**
+     * Saves specified {@link JsonElement} into file specified by {@link Path} with the {@link StandardCharsets#UTF_8} charset serialized by the
+     * specified {@link Gson}
+     *
+     * @param jsonElement Non-null {@link JsonElement}
+     * @param path        Non-null {@link Path}
+     * @param gson        Non-null {@link Gson}
+     *
+     * @throws IOException When I/O exception occurs (unable to write file)
+     */
+    public static void saveJson(@NonNull JsonElement jsonElement, @NonNull Path path, @NonNull Gson gson) throws IOException {
+        saveJson(jsonElement, path, StandardCharsets.UTF_8, gson);
+    }
+
+    /**
+     * Saves specified {@link JsonElement} into file specified by {@link Path} with the specified {@link Charset} serialized by the
+     * {@link #DEFAULT_GSON}
+     *
+     * @param jsonElement Non-null {@link JsonElement}
+     * @param path        Non-null {@link Path}
+     * @param charset     Non-null {@link Charset}
+     *
+     * @throws IOException When I/O exception occurs (unable to write file)
+     */
+    public static void saveJson(@NonNull JsonElement jsonElement, @NonNull Path path, @NonNull Charset charset) throws IOException {
+        saveJson(jsonElement, path, charset, DEFAULT_GSON);
+    }
+
+    /**
+     * Saves specified {@link JsonElement} into file specified by {@link Path} with the {@link StandardCharsets#UTF_8} charset serialized by the
+     * specified
+     * {@link #DEFAULT_GSON}
+     *
+     * @param jsonElement Non-null {@link JsonElement}
+     * @param path        Non-null {@link Path}
+     *
+     * @throws IOException When I/O exception occurs (unable to write file)
+     */
+    public static void saveJson(@NonNull JsonElement jsonElement, @NonNull Path path) throws IOException {
+        saveJson(jsonElement, path, StandardCharsets.UTF_8, DEFAULT_GSON);
+    }
+
+    /**
      * Reloads current {@link MayuJson} from the filesystem<br>
      * Internally invokes {@link MayuJson#createOrLoadJsonObject(Path, Charset)} and sets the result of {@link #getJsonObject()} to the current
      * {@link JsonObject}
@@ -149,7 +206,7 @@ public final class MayuJson {
      * @throws IOException When I/O exception occurs while saving file
      */
     public void save(Gson gson) throws IOException {
-        Files.write(path, gson.toJson(jsonObject).getBytes(charset));
+        saveJson(jsonObject, path, charset, gson);
     }
 
     /**

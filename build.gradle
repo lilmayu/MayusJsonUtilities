@@ -45,7 +45,9 @@ tasks.jacocoTestReport {
     reports {
         csv.required = true
     }
-}// == Quick tasks == //
+}
+
+// == Quick tasks == //
 
 task publishCloseAndRelease() {
     dependsOn 'publishToSonatype'
